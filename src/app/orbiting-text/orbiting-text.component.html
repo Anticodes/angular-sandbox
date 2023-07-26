@@ -1,0 +1,13 @@
+<div class="relative flex justify-center items-center" style="perspective: 240px; transform-style: preserve-3d;">
+    <div class="w-16 h-16 rounded-full bg-red-500 overflow-clip">
+        <div
+            class="flex w-[140%] h-[140%] bg-radial-gradient from-black/5 to-black/70 -translate-x-[25%] -translate-y-[25%]">
+        </div>
+    </div>
+    <div class="absolute rotation flex items-center justify-center">
+        <div class="absolute w-8 h-5" *ngFor="let letter of 'Emir'.split(''); let index = index"
+            [style.transform]="'translateY(-10%) rotateY(' + index*9 + 'deg) translateZ(3rem)'">
+            {{ letter }}
+        </div>
+    </div>
+</div>
