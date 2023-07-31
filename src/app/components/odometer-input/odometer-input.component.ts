@@ -33,6 +33,7 @@ export class OdometerInputComponent implements OnInit {
 
 
     @ViewChild("odometer") odometer!: ElementRef<HTMLDivElement>;
+    @ViewChild("handle") handle!: ElementRef<HTMLDivElement>;
     public clicking = false;
     public mouseOffset = 0;
 
@@ -61,11 +62,14 @@ export class OdometerInputComponent implements OnInit {
 
     mouseUp() {
         this.mouseOffset = 0;
+        this.handle.nativeElement.style.transform = "translateX(0px) translateY(0px) translateZ(99px)"
         this.clicking = false;
     }
 
     dragEvent(event: MouseEvent) {
         if (!this.clicking) return;
+        const rect = this.odometer.nativeElement.getBoundingClientRect();
+        this.handle.nativeElement.style.transform = `translateX(${event.x - rect.x - rect.width / 2}px) translateY(${event.y - rect.y - rect.height / 2}px) translateZ(99px)`;
         this.mouseOffset += event.movementY;
         if (Math.abs(this.mouseOffset) >= 32) {
             this.selectedIndex = Math.floor((this.selectedIndex - this.mouseOffset / 32 + this.max) % this.max);

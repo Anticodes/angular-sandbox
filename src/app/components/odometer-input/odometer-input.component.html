@@ -1,9 +1,14 @@
-<div #odometer class="flex flex-col items-center justify-center relative w-10 h-20 contraption select-none"
-    style="perspective: 240px;" [ngStyle]="{ 'transform': 'rotateX(' + -mouseOffset + 'deg)'}">
-    <div *ngFor="let x of [-2, -1, 0, 1, 2]" class="border absolute w-8 h-8 flex items-center justify-center"
-        [ngClass]="x === 0 ? 'bg-red-500' : 'bg-gray-500'"
-        [style.transform]="'rotateX('+ -x * 45 + 'deg) translateZ(36px)'" (mousedown)="mouseDown()"
-        (mouseup)="mouseUp()" (mousemove)="dragEvent($event)">
-        {{ range[(selectedIndex + x + max) % max] }}
+<div class="relative w-10 h-20">
+    <div #odometer class="absolute perspective top-1/2 left-1/2">
+        <div class="flex flex-col items-center justify-center parent animat select-none"
+            [style.transform]="'rotateX(' + -mouseOffset + 'deg)'">
+            <div *ngFor="let x of [-2, -1, 0, 1, 2]" class="absolute w-8 h-8 border flex items-center justify-center"
+                [ngClass]="x === 0 ? 'bg-red-500' : 'bg-gray-500'"
+                [style.transform]="'rotateX('+ -x * 45 + 'deg) translateZ(36px)'">
+                {{ range[(selectedIndex + x + max) % max] }}
+            </div>
+        </div>
     </div>
+    <div #handle class="absolute top-0 left-0 w-10 h-20" [style.transform]="'translateZ(99px)'"
+        (mousedown)="mouseDown()" (mouseup)="mouseUp()" (mouseleave)="mouseUp()" (mousemove)="dragEvent($event)"></div>
 </div>

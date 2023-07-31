@@ -2,12 +2,20 @@
     from {
         transform: rotateX(0deg);
     }
+
     to {
         transform: rotateX(-360deg);
     }
 }
 
-.contraption {
+.parent {
     transform-style: preserve-3d;
-    /* animation: rotation 6s linear; */
+}
+
+.perspective {
+    perspective: 240px;
+}
+
+.animat {
+    animation: rotation 6s linear;
 }
