@@ -1,4 +1,4 @@
-<div #odometer class="flex flex-col items-center justify-center relative w-8 h-16 contraption"
+<div #odometer class="flex flex-col items-center justify-center relative w-10 h-20 contraption select-none"
     style="perspective: 240px;" [ngStyle]="{ 'transform': 'rotateX(' + -mouseOffset + 'deg)'}">
     <div *ngFor="let x of [-2, -1, 0, 1, 2]" class="border absolute w-8 h-8 flex items-center justify-center"
         [ngClass]="x === 0 ? 'bg-red-500' : 'bg-gray-500'"

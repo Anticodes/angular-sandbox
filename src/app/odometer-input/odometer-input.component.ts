@@ -1,11 +1,11 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
-import { debounce } from '../../../../shared-types/util';
 import { fromEvent } from 'rxjs';
+import { Timing } from '../utility/timing.utility';
 
 @Component({
     selector: 'odometer-input',
     templateUrl: './odometer-input.component.html',
-    styleUrls: ['./odometer-input.component.css']
+    styleUrls: ['./odometer-input.component.scss']
 })
 export class OdometerInputComponent implements OnInit {
     public range: number[] = [];
@@ -18,19 +18,25 @@ export class OdometerInputComponent implements OnInit {
         this.sendOutput(this.range[this._selectedIndex]);
     }
 
-    @Input() min: number;
-    @Input() max: number;
-    @Input() value: number;
+    @Input() min: number = 0;
+    @Input("max")
+    private _max: number = 9;
+    public set max(val: number) {
+        this._max = val;
+    }
+    public get max() {
+        return this._max + 1;
+    }
+    @Input() value: number = 0;
     @Output() valueChange = new EventEmitter<number>();
-    private sendOutput: Function;
+    private sendOutput = Timing.debounce((value: number) => this.valueChange.emit(value), 500);
 
 
-    @ViewChild("odometer") odometer: ElementRef<HTMLDivElement>;
+    @ViewChild("odometer") odometer!: ElementRef<HTMLDivElement>;
     public clicking = false;
     public mouseOffset = 0;
 
     ngOnInit() {
-        this.sendOutput = debounce((value: number) => this.valueChange.emit(value), 500);
         for (let i = this.min; i <= this.max; i++) {
             this.range.push(i);
         }
