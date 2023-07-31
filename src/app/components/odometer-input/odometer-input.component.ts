@@ -1,6 +1,6 @@
 import { Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
 import { fromEvent } from 'rxjs';
-import { Timing } from '../utility/timing.utility';
+import { Timing } from '../../utility/timing.utility';
 
 @Component({
     selector: 'odometer-input',
