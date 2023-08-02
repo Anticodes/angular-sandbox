@@ -45,7 +45,7 @@ export class OdometerInputComponent implements OnInit {
     }
 
     ngAfterViewInit() {
-        fromEvent(this.odometer.nativeElement, 'mousewheel').subscribe((event: any) => {
+        fromEvent(this.handle.nativeElement, 'mousewheel').subscribe((event: any) => {
             event.preventDefault();
             if (event.wheelDelta > 0) {
                 this.selectedIndex = Math.floor((this.selectedIndex - 1 + this.max) % this.max);
