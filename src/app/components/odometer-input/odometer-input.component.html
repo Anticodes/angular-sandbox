@@ -5,7 +5,7 @@
             <div *ngFor="let x of [-2, -1, 0, 1, 2]" class="absolute w-8 h-8 border flex items-center justify-center"
                 [ngClass]="x === 0 ? 'bg-red-500' : 'bg-gray-500'"
                 [style.transform]="'rotateX('+ -x * 45 + 'deg) translateZ(36px)'">
-                {{ range[(selectedIndex + x + max) % max] }}
+                {{ range[(selectedIndex + x + range.length) % range.length] }}
             </div>
         </div>
     </div>

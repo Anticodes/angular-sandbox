@@ -19,14 +19,7 @@ export class OdometerInputComponent implements OnInit {
     }
 
     @Input() min: number = 0;
-    @Input("max")
-    private _max: number = 9;
-    public set max(val: number) {
-        this._max = val;
-    }
-    public get max() {
-        return this._max + 1;
-    }
+    @Input() max: number = 9;
     @Input() value: number = 0;
     @Output() valueChange = new EventEmitter<number>();
     private sendOutput = Timing.debounce((value: number) => this.valueChange.emit(value), 500);
@@ -48,9 +41,9 @@ export class OdometerInputComponent implements OnInit {
         fromEvent(this.handle.nativeElement, 'mousewheel').subscribe((event: any) => {
             event.preventDefault();
             if (event.wheelDelta > 0) {
-                this.selectedIndex = Math.floor((this.selectedIndex - 1 + this.max) % this.max);
+                this.selectedIndex = Math.floor((this.selectedIndex - 1 + this.range.length) % this.range.length);
             } else {
-                this.selectedIndex = Math.floor((this.selectedIndex + 1 + this.max) % this.max);
+                this.selectedIndex = Math.floor((this.selectedIndex + 1 + this.range.length) % this.range.length);
             }
         });
     }
@@ -72,7 +65,7 @@ export class OdometerInputComponent implements OnInit {
         this.handle.nativeElement.style.transform = `translateX(${event.x - rect.x - rect.width / 2}px) translateY(${event.y - rect.y - rect.height / 2}px) translateZ(99px)`;
         this.mouseOffset += event.movementY;
         if (Math.abs(this.mouseOffset) >= 32) {
-            this.selectedIndex = Math.floor((this.selectedIndex - this.mouseOffset / 32 + this.max) % this.max);
+            this.selectedIndex = Math.floor((this.selectedIndex - this.mouseOffset / 32 + this.range.length) % this.range.length);
             this.mouseOffset -= Math.sign(this.mouseOffset) * 32;
         }
     }
