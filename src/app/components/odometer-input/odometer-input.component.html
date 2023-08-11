@@ -1,16 +1,11 @@
-<div class="relative w-10 h-20">
-    <div #odometer class="absolute perspective top-1/2 left-1/2">
-        <div class="flex flex-col items-center justify-center parent select-none"
-            [style.transform]="'rotateX(' + -mouseOffset + 'deg)'">
-            <div *ngFor="let x of [-2, -1, 0, 1, 2]" class="absolute w-8 h-8 border flex items-center justify-center"
-                [ngClass]="x === 0 ? 'bg-red-500' : 'bg-gray-500'"
-                [style.transform]="'rotateX('+ -x * 45 + 'deg) translateZ(36px)'">
+<div class="parent">
+    <div #odometer class="odometer" draggable="true" (dragstart)="dragStart($event)" (dragend)="dragEnd()"
+        (drag)="dragEvent($event)">
+        <div [style.--mouse-offset]="-(mouseOffset % 45) + 'deg'" class="rotator">
+            <div *ngFor="let x of [-2, -1, 0, 1, 2]" [style.--selected]="x===0 ? 1 : 0"
+                [style.--panel-rotation]="(-x * 45)" class="panel">
                 {{ range[(selectedIndex + x + range.length) % range.length] }}
             </div>
         </div>
-    </div>
-    <div #handle class="absolute top-0 left-0 w-10 h-20 hover:cursor-move" [style.transform]="'translateZ(99px)'"
-        (mousedown)="mouseDown()" (mouseup)="mouseUp()" (mouseleave)="mouseUp()" (mousemove)="dragEvent($event)">
-        <div class="rounded-full w-4 h-4 mx-auto my-9" [ngClass]="clicking ? 'bg-gray-500' : ''"></div>
     </div>
 </div>
