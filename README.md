@@ -1,27 +1,83 @@
-# AngularSandbox
+# Angular 3D Components
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.5.
+Howdy partners! Welcome to the Angular 3D Components library, where we've got some rootin' tootin' components that'll make your web applications come alive with that ol' Wild West charm. Saddle up and let's take a gander at what we've got so far.
 
-## Development server
+## Installation
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+To rustle up the Odometer Input component, make sure you've got our library installed:
 
-## Code scaffolding
+<sup>* Not uploaded/working yet</sup>
+```bash
+npm install angular-3d-components --save
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Odometer Input 🤠
 
-## Build
+![Odometer Input](/src/favicon.ico)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The **Odometer Input** component is like a fancy 3D combination lock digit, perfect for when you need to lasso up some numeric input from your users. With this here component, you can wrangle those digits with style and flair, just like a true cowboy ought to.
 
-## Running unit tests
+### Usage
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Sling this here component into your Angular project:
 
-## Running end-to-end tests
+```typescript
+import { OdometerInputComponent } from 'angular-3d-components';
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+@NgModule({
+  declarations: [
+    OdometerInputComponent,
+    // ...
+  ],
+  imports: [
+    // ...
+  ],
+})
+export class YourModule { }
+```
 
-## Further help
+And in your HTML, use the `<odometer-input>` tag to display the component:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```html
+<odometer-input [min]="0" [max]="9" [(value)]="odometerValue"></odometer-input>
+```
+
+## Orbiting Text 🌵
+
+![Orbiting Text](/src/favicon.ico)
+
+Now ain't this just the darnedest thing you've ever seen? Introducing the **Orbiting Text** component, a sphere-dancin' marvel that'll have your text swirling and twirling 'round like tumbleweeds in the wind.
+
+### Usage
+
+Stake your claim on this component by declarin' it in your module:
+
+```typescript
+import { OrbitingTextComponent } from 'angular-3d-components';
+
+@NgModule({
+  declarations: [
+    OrbitingTextComponent,
+    // ...
+  ],
+  imports: [
+    // ...
+  ],
+})
+export class YourModule { }
+```
+
+Then in your HTML, use the `<orbiting-text>` tag to give your text that rodeo-worthy spin:
+
+```html
+<orbiting-text text="Howdy, partner!"></orbiting-text>
+```
+
+## More to Come! 🤠
+
+Hold onto your Stetsons, 'cause we ain't done yet! We've got more smokin' hot components cookin' in the forge, including a Stepper component that'll guide your users down the dusty trail. So keep your eyes peeled and your spurs jinglin', 'cause the Angular 3D Components library is fixin' to wrangle up some more rootin' tootin' goodness.
+
+If you've got any questions, saddle up and give us a holler at antimax@anticodes.net. Happy trailblazin', partners! 🐴🌵🌅
+
+Yours in code,
+Anticodes
