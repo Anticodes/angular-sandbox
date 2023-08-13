@@ -26,9 +26,9 @@ export class OdometerInputComponent implements OnInit {
 
 
     @ViewChild("odometer") odometer!: ElementRef<HTMLDivElement>;
-    @ViewChild("handle") handle!: ElementRef<HTMLDivElement>;
-    public clicking = false;
     public mouseOffset = 0;
+    private previousY = 0;
+    private previousIndex = 0;
 
     ngOnInit() {
         for (let i = this.min; i <= this.max; i++) {
@@ -38,35 +38,44 @@ export class OdometerInputComponent implements OnInit {
     }
 
     ngAfterViewInit() {
-        fromEvent(this.handle.nativeElement, 'mousewheel').subscribe((event: any) => {
+        fromEvent(this.odometer.nativeElement, 'mousewheel').subscribe((event: any) => {
             event.preventDefault();
-            if (event.wheelDelta > 0) {
-                this.selectedIndex = Math.floor((this.selectedIndex - 1 + this.range.length) % this.range.length);
-            } else {
-                this.selectedIndex = Math.floor((this.selectedIndex + 1 + this.range.length) % this.range.length);
-            }
+            let timer = 0;
+            const interval = setInterval(() => {
+                console.log(event.wheelDelta);
+                this.mouseOffset += event.wheelDelta > 0 ? 3 : -3;
+                if (Math.abs(this.mouseOffset) >= 45) {
+                    this.selectedIndex = Math.floor((this.selectedIndex - this.mouseOffset / 45 + this.range.length) % this.range.length);
+                    this.mouseOffset -= Math.sign(this.mouseOffset) * 45;
+                }
+                if (++timer === 15) {
+                    clearInterval(interval);
+                }
+            }, 30);
         });
     }
 
-    mouseDown() {
+    dragStart(event: DragEvent) {
         this.mouseOffset = 0;
-        this.clicking = true;
+        if (event.dataTransfer) {
+            event.dataTransfer.setDragImage(document.createElement("div"), 8, 8);
+            event.dataTransfer.effectAllowed = "none";
+        }
     }
 
-    mouseUp() {
+    dragEnd() {
         this.mouseOffset = 0;
-        this.handle.nativeElement.style.transform = "translateX(0px) translateY(0px) translateZ(99px)"
-        this.clicking = false;
+        this.previousY = 0;
+        this.selectedIndex = this.previousIndex;
     }
 
-    dragEvent(event: MouseEvent) {
-        if (!this.clicking) return;
-        const rect = this.odometer.nativeElement.getBoundingClientRect();
-        this.handle.nativeElement.style.transform = `translateX(${event.x - rect.x - rect.width / 2}px) translateY(${event.y - rect.y - rect.height / 2}px) translateZ(99px)`;
-        this.mouseOffset += event.movementY;
-        if (Math.abs(this.mouseOffset) >= 32) {
-            this.selectedIndex = Math.floor((this.selectedIndex - this.mouseOffset / 32 + this.range.length) % this.range.length);
-            this.mouseOffset -= Math.sign(this.mouseOffset) * 32;
+    dragEvent(event: DragEvent) {
+        this.mouseOffset += event.offsetY - this.previousY;
+        this.previousY = event.offsetY;
+        if (Math.abs(this.mouseOffset) >= 45) {
+            this.previousIndex = this.selectedIndex;
+            this.selectedIndex = Math.floor((this.selectedIndex - this.mouseOffset / 45 + this.range.length) % this.range.length);
+            this.mouseOffset -= Math.sign(this.mouseOffset) * 45;
         }
     }
 }

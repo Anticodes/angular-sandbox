@@ -1,17 +1,42 @@
-@keyframes rotation {
-    from {
-        transform: rotateX(0deg);
-    }
-
-    to {
-        transform: rotateX(-360deg);
-    }
-}
-
 .parent {
-    transform-style: preserve-3d;
+    position: relative;
+    width: 2.83rem;
+    height: 5rem;
+    filter: drop-shadow(0rem 0.2rem 0.3rem black);
 }
 
-.perspective {
+.odometer {
+    position: absolute;
     perspective: 240px;
+    top: 50%;
+    left: 50%;
+}
+
+:hover.odometer {
+    cursor: move;
+}
+
+.rotator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform-style: preserve-3d;
+    user-select: none;
+    transform: rotateX(var(--mouse-offset));
+}
+
+.panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background-color: gray;
+    background-color: rgb(calc(var(--selected) * 127 + 127), calc(127 - var(--selected) * 127), calc(127 - var(--selected) * 127));
+    transform: rotateX(calc(var(--panel-rotation) * 1deg)) translateZ(2.4rem);
+
+    outline: pink solid calc(var(--selected) * 2px);
+    outline-offset: 1px;
 }
