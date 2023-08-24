@@ -7,6 +7,7 @@ import { OdometerInputComponent } from './components/odometer-input/odometer-inp
 import { OrbitingTextComponent } from './components/orbiting-text/orbiting-text.component';
 import { AnimatedTooltipComponent } from './components/animated-tooltip/animated-tooltip.component';
 import { AnimatedTooltipDirective } from './directives/animated-tooltip.directive';
+import { StepperComponent } from './components/stepper/stepper.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AnimatedTooltipDirective } from './directives/animated-tooltip.directiv
     OrbitingTextComponent,
     AnimatedTooltipComponent,
     AnimatedTooltipDirective,
+    StepperComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
