@@ -1,4 +1,5 @@
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { StepComponent } from './step/step.component';
 
 @Component({
     selector: 'stepper',
@@ -6,18 +7,26 @@ import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular
     styleUrls: ['./stepper.component.scss']
 })
 export class StepperComponent implements AfterViewInit {
-    @ViewChild("viewport") viewport!: ElementRef<HTMLDivElement>;
+    @ContentChildren(StepComponent) childrenQuery!: QueryList<StepComponent>;
+    public children!: Array<StepComponent>;
+    
+    @Input("selected") _selected!: number;
+    get selected() {
+        return this._selected;
+    }
 
-    @Input() selected: number = 0;
+    set selected(selection: number) {
+        this.children[this._selected].show = false;
+        this._selected = selection;
+        this.children[this._selected].show = true;
+    }
 
     ngAfterViewInit(): void {
-        for (let i = 0; i < this.viewport.nativeElement.children.length; i++) {
-            if (i !== this.selected) {
-                const child = this.viewport.nativeElement.children[i] as HTMLElement;
-                child.style.setProperty("display", "none")
-                console.log(child);
-            }
-        }
-        console.log(this.viewport.nativeElement.children);
+        this.children = this.childrenQuery.toArray();
+        this.selected = 0;
+    }
+
+    step() {
+        this.selected = (this.selected + 1) % this.children.length;
     }
 }
