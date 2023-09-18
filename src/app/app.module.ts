@@ -8,6 +8,7 @@ import { OrbitingTextComponent } from './components/orbiting-text/orbiting-text.
 import { AnimatedTooltipComponent } from './components/animated-tooltip/animated-tooltip.component';
 import { AnimatedTooltipDirective } from './directives/animated-tooltip.directive';
 import { StepperComponent } from './components/stepper/stepper.component';
+import { StepComponent } from './components/stepper/step/step.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { StepperComponent } from './components/stepper/stepper.component';
     AnimatedTooltipComponent,
     AnimatedTooltipDirective,
     StepperComponent,
+    StepComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

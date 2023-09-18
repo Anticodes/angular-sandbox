@@ -1,6 +1,7 @@
 <div class="indicator">
-    <div *ngFor=""></div>
+    <div *ngFor="let child of children">{{ child.title }}</div>
 </div>
 <div #viewport class="viewport">
-    <ng-content></ng-content>
+    <ng-content select="step" />
 </div>
+<button (click)="step()">Batuhan</button>
