@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ContentChildren, Input, QueryList } from '@angular/core';
+import { AfterContentInit, Component, ContentChildren, Input, QueryList } from '@angular/core';
 import { StepComponent } from './step/step.component';
 
 @Component({
@@ -6,7 +6,7 @@ import { StepComponent } from './step/step.component';
     templateUrl: './stepper.component.html',
     styleUrls: ['./stepper.component.scss']
 })
-export class StepperComponent implements AfterViewInit {
+export class StepperComponent implements AfterContentInit {
     @ContentChildren(StepComponent) childrenQuery!: QueryList<StepComponent>;
     public children!: Array<StepComponent>;
     
@@ -21,7 +21,7 @@ export class StepperComponent implements AfterViewInit {
         this.children[this._selected].show = true;
     }
 
-    ngAfterViewInit(): void {
+    ngAfterContentInit(): void {
         this.children = this.childrenQuery.toArray();
         this.selected = 0;
     }

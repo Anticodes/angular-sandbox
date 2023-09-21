@@ -1,7 +1,46 @@
-.indicator {
+.stepper-panel {
+    width: 36rem;
+    height: 48rem;
+
+    border-style: double;
+    border-width: 2px;
+    border-color: #000;
+    border-radius: 1rem;
+
+    padding: 2rem 2rem;
+}
+
+.indicator-panel {
     display: flex;
     gap: 2rem;
+    width: 100%;
 }
+
+.indicator {
+    display: flex;
+    width: 100%;
+    aspect-ratio: 1;
+    
+    align-items: center;
+    justify-content: center;
+
+    border-width: 2px;
+    border-radius: 100vh;
+    border-style: solid;
+}
+
+// .indicator:first-child {
+//     width: fit-content;
+// }
+
+// .indicator:not(:first-child)::before {
+//     content: "";
+//     display: block;
+//     height: 1px;
+//     width: 100%;
+//     background: #000;
+//     margin-right: 2rem;
+// }
 
 .viewport {
     

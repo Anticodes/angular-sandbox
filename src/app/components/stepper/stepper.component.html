@@ -1,7 +1,10 @@
-<div class="indicator">
-    <div *ngFor="let child of children">{{ child.title }}</div>
+<div class="stepper-panel">
+    <div class="indicator-panel">
+        <div class="indicator" *ngFor="let child of children">{{ child.title }}</div>
+    </div>
+    <hr/>
+    <div #viewport class="viewport">
+        <ng-content select="step" />
+    </div>
+    <button (click)="step()">Step it up</button>
 </div>
-<div #viewport class="viewport">
-    <ng-content select="step" />
-</div>
-<button (click)="step()">Batuhan</button>
