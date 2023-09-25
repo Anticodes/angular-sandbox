@@ -1,8 +1,17 @@
 <div class="stepper-panel">
     <div class="indicator-panel">
-        <div class="indicator" *ngFor="let child of children">{{ child.title }}</div>
+        <ng-container *ngFor="let child of children; let last = last">
+            <div class="indicator">
+                <div class="indicator-shadow"></div>
+                <div class="lighting"></div>
+            </div>
+            <!-- <div class="indicator">
+                <p>{{ child.title }}</p>
+            </div> -->
+            <hr class="connector" *ngIf="!last" />
+        </ng-container>
     </div>
-    <hr/>
+    <hr class="connector" />
     <div #viewport class="viewport">
         <ng-content select="step" />
     </div>
