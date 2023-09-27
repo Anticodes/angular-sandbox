@@ -1,14 +1,11 @@
 <div class="stepper-panel">
     <div class="indicator-panel">
-        <ng-container *ngFor="let child of children; let last = last">
-            <div class="indicator">
+        <ng-container *ngFor="let child of children; let last = last; let index = index">
+            <div class="indicator" [ngClass]="selected === index ? 'selected' : selected < index ? 'non-selected' : 'done'">
                 <div class="indicator-shadow"></div>
-                <div class="lighting"></div>
+                <div class="lighting">{{ child.title }}</div>
             </div>
-            <!-- <div class="indicator">
-                <p>{{ child.title }}</p>
-            </div> -->
-            <hr class="connector" *ngIf="!last" />
+            <hr class="connector" [ngClass]="selected > index ? 'done' : 'non-selected'" *ngIf="!last" />
         </ng-container>
     </div>
     <hr class="connector" />
