@@ -23,7 +23,7 @@ export class StepperComponent implements AfterContentInit {
 
     ngAfterContentInit(): void {
         this.children = this.childrenQuery.toArray();
-        this.selected = 0;
+        this.selected = this.selected;
     }
 
     step() {

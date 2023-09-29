@@ -1,10 +1,46 @@
 <div class="showcase">
     <orbiting-text text="Yörünge etrafında dönen yazı"></orbiting-text>
     <odometer-input></odometer-input>
-    <stepper [selected]="0">
-        <step title="Register">1st content</step>
-        <step title="Login">2nd content</step>
-        <step title="Payment">3rd content</step>
+    <stepper [selected]="2">
+        <step title="Register">
+            <h2>Register</h2>
+            <form>
+                <label for="username">Username</label>
+                <input type="text" name="username" id="username">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+            </form>
+        </step>
+        <step title="Login">
+            <h2>Login</h2>
+            <form>
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password">
+            </form>
+        </step>
+        <step title="Payment">
+            <h2>Payment</h2>
+            <form>
+                <label for="creditcard">Card Number</label>
+                <input type="number" name="creditcard" id="creditcard">
+                <div class="half">
+                    <label for="expiration">Expiration</label>
+                    <div id="expiration" class="composite">
+                        <input type="number" name="expiration-month" id="expiration-month">
+                        /
+                        <input type="number" name="expiration-year" id="expiration-year">
+                    </div>
+                </div>
+                <div class="half">
+                    <label for="cvv">CVV</label>
+                    <input type="number" name="cvv" id="cvv">
+                </div>
+            </form>
+        </step>
         <step title="Finish">4th content</step>
     </stepper>
 </div>
