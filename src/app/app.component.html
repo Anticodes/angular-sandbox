@@ -1,6 +1,11 @@
 <div class="showcase">
     <orbiting-text text="Yörünge etrafında dönen yazı"></orbiting-text>
-    <odometer-input></odometer-input>
+    <odometer-input
+        [animatedTooltip]="{
+            title: 'Sayaç',
+            description: 'Bu bir numara sayacıdır'
+        }"
+    ></odometer-input>
     <stepper [selected]="0">
         <step title="Register">1st content</step>
         <step title="Login">2nd content</step>

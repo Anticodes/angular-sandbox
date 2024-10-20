@@ -6,6 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./animated-tooltip.component.scss']
 })
 export class AnimatedTooltipComponent {
-    @Input() title: string = "asd";
-    @Input() description: string = "asd";
+    @Input({ required: true }) title!: string;
+    @Input() description?: string;
 }

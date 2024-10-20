@@ -2,6 +2,7 @@ import {
     ComponentRef,
     Directive,
     HostListener,
+    inject,
     Input,
     ViewContainerRef,
 } from '@angular/core';
@@ -12,17 +13,21 @@ import { AnimatedTooltipComponent } from '../components/animated-tooltip/animate
 })
 export class AnimatedTooltipDirective {
     private tooltipComponentRef?: ComponentRef<AnimatedTooltipComponent>;
+    private viewContainer = inject(ViewContainerRef);
 
-    @Input("animatedTooltip", ) tooltipData: {title?: string, description?: string};
-
-    constructor(private viewContainer: ViewContainerRef) {}
+    @Input({ alias: 'animatedTooltip', required: true }) tooltipData!: {
+        title: string;
+        description?: string;
+    };
 
     @HostListener('mouseenter')
     onMouseEnter() {
         this.tooltipComponentRef = this.viewContainer.createComponent(
-            AnimatedTooltipComponent, 
+            AnimatedTooltipComponent
         );
-        this.tooltipComponentRef.instance.title = 
+        this.tooltipComponentRef.instance.title = this.tooltipData.title;
+        this.tooltipComponentRef.instance.description =
+            this.tooltipData.description;
     }
 
     @HostListener('mouseleave')
