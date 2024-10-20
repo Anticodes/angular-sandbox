@@ -9,23 +9,19 @@ import { AnimatedTooltipComponent } from './components/animated-tooltip/animated
 import { AnimatedTooltipDirective } from './directives/animated-tooltip.directive';
 import { StepperComponent } from './components/stepper/stepper.component';
 import { StepComponent } from './components/stepper/step/step.component';
-import { AnimatedTooltipComponent } from './components/animated-tooltip/animated-tooltip.component';
-import { AnimatedTooltipDirective } from './directives/animated-tooltip.directive';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    OdometerInputComponent,
-    OrbitingTextComponent,
-    AnimatedTooltipComponent,
-    AnimatedTooltipDirective,
-    StepperComponent,
-    StepComponent,
-    AnimatedTooltipComponent,
-    AnimatedTooltipDirective,
-  ],
-  imports: [BrowserModule, AppRoutingModule],
-  providers: [],
-  bootstrap: [AppComponent],
+    declarations: [
+        AppComponent,
+        OdometerInputComponent,
+        OrbitingTextComponent,
+        AnimatedTooltipComponent,
+        AnimatedTooltipDirective,
+        StepperComponent,
+        StepComponent,
+    ],
+    imports: [BrowserModule, AppRoutingModule],
+    providers: [],
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

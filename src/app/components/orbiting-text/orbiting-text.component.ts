@@ -1,14 +1,22 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    Input,
+    OnInit,
+    ViewChild,
+} from '@angular/core';
 
 @Component({
     selector: 'orbiting-text',
     templateUrl: './orbiting-text.component.html',
-    styleUrls: ['./orbiting-text.component.scss']
+    styleUrls: ['./orbiting-text.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrbitingTextComponent implements OnInit {
-    @Input() text: string = "";
-    @ViewChild("renderer") renderer!: ElementRef<HTMLDivElement>;
-    readonly canvasContext = new OffscreenCanvas(0, 0).getContext("2d")!;
+    @Input() text: string = '';
+    @ViewChild('renderer') renderer!: ElementRef<HTMLDivElement>;
+    readonly canvasContext = new OffscreenCanvas(0, 0).getContext('2d')!;
 
     ngOnInit() {
         this.canvasContext.font = this.getCanvasFont();
@@ -21,7 +29,7 @@ export class OrbitingTextComponent implements OnInit {
     increasing(text: string) {
         const result: Array<LetterWithPreviousWidths> = [];
         let previousWidths = 0;
-        for (const letter of text.split("")) {
+        for (const letter of text.split('')) {
             result.push({ previousWidths, letter });
             previousWidths += this.calculateWidth(letter);
         }
@@ -29,7 +37,9 @@ export class OrbitingTextComponent implements OnInit {
     }
 
     private getCssStyle(prop: string) {
-        return window.getComputedStyle(this.renderer.nativeElement, null).getPropertyValue(prop);
+        return window
+            .getComputedStyle(this.renderer.nativeElement, null)
+            .getPropertyValue(prop);
     }
 
     private getCanvasFont() {
@@ -42,6 +52,6 @@ export class OrbitingTextComponent implements OnInit {
 }
 
 type LetterWithPreviousWidths = {
-    previousWidths: number,
-    letter: string
+    previousWidths: number;
+    letter: string;
 };

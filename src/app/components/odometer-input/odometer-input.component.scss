@@ -37,6 +37,6 @@
     background-color: rgb(calc(var(--selected) * 127 + 127), calc(127 - var(--selected) * 127), calc(127 - var(--selected) * 127));
     transform: rotateX(calc(var(--panel-rotation) * 1deg)) translateZ(2.4rem);
 
-    outline: pink solid calc(var(--selected) * 2px);
+    outline: white solid calc(var(--selected) * 2px);
     outline-offset: 1px;
 }
