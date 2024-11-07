@@ -31,17 +31,7 @@ export class AnimatedTooltipDirective {
         this.tooltipComponentRef.instance.title = this.tooltipData.title;
         this.tooltipComponentRef.instance.description =
             this.tooltipData.description;
-        setTimeout(() => {
-            const tooltipElement =
-                this.tooltipComponentRef!.location.nativeElement.firstChild;
-            const rect = this.element.nativeElement.getBoundingClientRect();
-            const tipRect = tooltipElement.getBoundingClientRect();
-            tooltipElement.style.visibility = 'visible';
-            tooltipElement.style.left =
-                rect.x + rect.width / 2 - tipRect.width / 2 + 'px';
-            tooltipElement.style.top = rect.y - rect.height + 'px';
-            tooltipElement.classList.add('fade-in');
-        });
+        this.tooltipComponentRef.instance.toolElement = this.element.nativeElement;
     }
 
     @HostListener('mousemove', ['$event'])
